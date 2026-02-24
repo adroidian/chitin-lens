@@ -1,8 +1,8 @@
-# 🔭 Chitin Lens — The Agent Browser
+# 🔭 Chitin Lens — The Agent's Lens Onto the Web
 
-**Self-healing, accessibility-first, containerized browser for AI agents.**
+**Self-healing, accessibility-first, containerized browser that gives AI agents eyes and hands on the web.**
 
-*Trust as a structure, not a feeling.*
+*Why should an agent pay for what a human gets for free?*
 
 ## The Problem
 
