@@ -10,6 +10,8 @@ FROM python:3.10-slim
 # x11vnc: VNC server for human-in-the-loop debugging
 # chromium: The browser engine
 # at-spi2-core: Linux Accessibility Bus (the "screen reader" interface)
+# gir1.2-atspi-2.0: AT-SPI typelib (required for pyatspi via GObject introspection)
+# libgirepository1.0-dev: GObject introspection dev headers (for PyGObject pip install)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     xvfb \
     fluxbox \
@@ -20,9 +22,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     dbus-x11 \
     gir1.2-gtk-3.0 \
     gir1.2-atspi-2.0 \
-    python3-gi \
-    python3-dev \
-    python3-pyatspi \
     gcc \
     pkg-config \
     libcairo2-dev \
@@ -31,10 +30,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     procps \
     curl \
     && rm -rf /var/lib/apt/lists/*
-
-# Link system pyatspi into pip's Python (apt installs to /usr/lib/python3/)
-RUN ln -sf /usr/lib/python3/dist-packages/pyatspi /usr/local/lib/python3.10/site-packages/pyatspi 2>/dev/null || true && \
-    ln -sf /usr/lib/python3/dist-packages/gi /usr/local/lib/python3.10/site-packages/gi 2>/dev/null || true
 
 # Set up working directory
 WORKDIR /app

@@ -27,10 +27,14 @@ import pyautogui
 
 # Conditionally import AT-SPI (may not be available outside container)
 try:
-    import pyatspi
+    import gi
+    gi.require_version('Atspi', '2.0')
+    from gi.repository import Atspi
+    pyatspi = Atspi  # Alias for compatibility with existing code
     ATSPI_AVAILABLE = True
-except ImportError:
+except (ImportError, ValueError):
     ATSPI_AVAILABLE = False
+    pyatspi = None
 
 # --- Configuration ---
 MEMORY_FILE = os.environ.get("LENS_MEMORY", "/app/data/memory.json")
