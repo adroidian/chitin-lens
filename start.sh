@@ -50,6 +50,7 @@ chromium --no-sandbox \
          --force-renderer-accessibility \
          --start-maximized \
          --remote-debugging-port=9222 \
+         --remote-allow-origins=* \
          --user-data-dir=/app/data/chrome-profile \
          "about:blank" &
 CHROME_PID=$!
