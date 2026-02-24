@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/chitin-lens-banner.png" alt="Chitin Lens Banner" width="100%">
+</p>
+
 # 🔭 Chitin Lens — The Agent's Lens Onto the Web
 
 **Self-healing, accessibility-first, containerized browser that gives AI agents eyes and hands on the web.**
