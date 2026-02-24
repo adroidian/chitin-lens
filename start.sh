@@ -6,8 +6,15 @@ set -e
 
 echo "🔭 Chitin Lens starting..."
 
+# 0. Create Xauthority file (needed by pyautogui/Xlib)
+touch /root/.Xauthority
+
 # 1. Start D-Bus (required for AT-SPI accessibility)
 echo "  [1/6] Starting D-Bus..."
+# Start the system bus (needed by AT-SPI registry)
+mkdir -p /run/dbus
+dbus-daemon --system --fork 2>/dev/null || true
+# Start the session bus
 eval $(dbus-launch --sh-syntax)
 export DBUS_SESSION_BUS_ADDRESS
 
@@ -72,4 +79,4 @@ echo "╚═══════════════════════�
 echo ""
 
 # Start the Agent API (blocking — keeps container alive)
-exec uvicorn pilot:app --host 0.0.0.0 --port 8000 --log-level info
+exec python3 -m uvicorn pilot:app --host 0.0.0.0 --port 8000 --log-level info

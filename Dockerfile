@@ -22,20 +22,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gir1.2-atspi-2.0 \
     python3-gi \
     python3-dev \
+    python3-pyatspi \
     gcc \
     pkg-config \
     libcairo2-dev \
     libgirepository1.0-dev \
+    xdotool \
     procps \
     curl \
     && rm -rf /var/lib/apt/lists/*
+
+# Link system pyatspi into pip's Python (apt installs to /usr/lib/python3/)
+RUN ln -sf /usr/lib/python3/dist-packages/pyatspi /usr/local/lib/python3.10/site-packages/pyatspi 2>/dev/null || true && \
+    ln -sf /usr/lib/python3/dist-packages/gi /usr/local/lib/python3.10/site-packages/gi 2>/dev/null || true
 
 # Set up working directory
 WORKDIR /app
 
 # Copy and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir pyautogui --no-deps && \
+    pip install --no-cache-dir pytweening mouseinfo pygetwindow pyperclip pyrect pyscreeze 2>/dev/null || true
 
 # Copy application code
 COPY pilot.py .
