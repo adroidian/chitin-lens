@@ -1,0 +1,29 @@
+{
+  "chatgpt.com": {
+    "strategy": "accessibility",
+    "role": "text",
+    "name": "Message ChatGPT",
+    "send_button": "Send prompt",
+    "confidence": 0.0,
+    "last_verified": null,
+    "notes": "Needs initial discovery scan"
+  },
+  "claude.ai": {
+    "strategy": "accessibility",
+    "role": "text",
+    "name": "Write your message to Claude...",
+    "send_button": "Send Message",
+    "confidence": 0.0,
+    "last_verified": null,
+    "notes": "Needs initial discovery scan"
+  },
+  "gemini.google.com": {
+    "strategy": "accessibility",
+    "role": "text",
+    "name": "Enter a prompt here",
+    "send_button": "Send",
+    "confidence": 0.0,
+    "last_verified": null,
+    "notes": "Needs initial discovery scan"
+  }
+}
